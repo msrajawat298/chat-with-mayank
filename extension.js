@@ -8,29 +8,46 @@ const vscode = require('vscode');
 /**
  * @param {vscode.ExtensionContext} context
  */
+const vscode = require('vscode');
+
 function activate(context) {
+    const view = vscode.window.createTreeView('chat', {
+        treeDataProvider: {
+            getChildren: () => ['Chat Bot'],
+            getTreeItem: (item) => ({
+                label: item,
+                command: {
+                    command: 'myExtension.openChatBot',
+                    title: 'Open Chat Bot'
+                }
+            })
+        }
+    });
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "chat-with-mayank" is now active!');
+    const command = vscode.commands.registerCommand('myExtension.openChatBot', () => {
+        const panel = vscode.window.createWebviewPanel(
+            'chatBot',
+            'Chat Bot',
+            vscode.ViewColumn.One,
+            {}
+        );
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with  registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('chat-with-mayank.helloWorld', function () {
-		// The code you place here will be executed every time your command is executed
+        panel.webview.html = getChatBotHtml();
+    });
 
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from chat_with_mayank!');
-	});
-
-	context.subscriptions.push(disposable);
+    context.subscriptions.push(view, command);
 }
 
-// This method is called when your extension is deactivated
-function deactivate() {}
-
-module.exports = {
-	activate,
-	deactivate
+function getChatBotHtml() {
+    return `
+        <!DOCTYPE html>
+        <html lang="en">
+        <body>
+            <h1>Chat Bot</h1>
+            <!-- Your chat bot code goes here -->
+        </body>
+        </html>
+    `;
 }
+
+exports.activate = activate;
