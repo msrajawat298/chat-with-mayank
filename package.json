@@ -1,0 +1,51 @@
+{
+  "name": "chat-with-mayank",
+  "displayName": "chat_with_mayank",
+  "description": "This is app will help you to know more about mayank singh",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [{
+      "command": "chat-with-mayank.helloWorld",
+      "title": "Hello World"
+    }],
+    "viewsContainers": {
+      "activitybar": [
+          {
+              "id": "myExtension",
+              "title": "My Extension",
+              "icon": "media/icon.svg"
+          }
+      ]
+  },
+  "views": {
+      "myExtension": [
+          {
+              "id": "chat",
+              "name": "Chat"
+          }
+      ]
+  }
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3",
+    "@vscode/test-cli": "^0.0.4",
+    "@vscode/test-electron": "^2.3.8"
+  }
+}
