@@ -8,8 +8,6 @@ const vscode = require('vscode');
 /**
  * @param {vscode.ExtensionContext} context
  */
-const vscode = require('vscode');
-
 function activate(context) {
     const view = vscode.window.createTreeView('chat', {
         treeDataProvider: {
@@ -43,7 +41,7 @@ function getChatBotHtml() {
         <!DOCTYPE html>
         <html lang="en">
         <body>
-            <h1>Chat Bot</h1>
+            <h1>Chat Bot testing</h1>
             <!-- Your chat bot code goes here -->
         </body>
         </html>
